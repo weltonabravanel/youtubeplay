@@ -55,16 +55,17 @@
         // Array com as URLs
         const destinos = [
             "https://youtube.com.br",
-            "https://youtube-clone-platform.vitara.app"
-           ];
+            "https://youtube-clone-platform.vitara.app",
+            "https://music.youtube.com" // <-- YouTube Music adicionado aqui
+        ];
 
         const indiceAleatorio = Math.floor(Math.random() * destinos.length);
         const urlEscolhida = destinos[indiceAleatorio];
         const tempoEspera = 3000; // 3 segundos
 
         setTimeout(() => {
-            // Verifica se a URL escolhida é o YouTube
-            if (urlEscolhida === "https://youtube.com.br") {
+            // Verifica se a URL escolhida é o YouTube ou o YouTube Music
+            if (urlEscolhida === "https://youtube.com.br" || urlEscolhida === "https://music.youtube.com") {
                 // Redireciona a página inteira ao invés de usar o iframe
                 window.location.href = urlEscolhida;
             } else {
@@ -83,5 +84,3 @@
 
 </body>
 </html>
-
-
