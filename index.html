@@ -3,30 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Youtube, YouTube Play, Brasil Tube, vídeos online, streaming, assistir vídeos, entretenimento digital, Welton Abravanel">
-    <meta name="language" content="Portuguese">
-    <meta name="robots" content="index, follow">
-    <meta name="revisit-after" content="1 day">
-    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play. A plataforma de streaming feita para você aproveitar o melhor da web."> 
-    <meta property="og:title" content="Youtube , Youtube Play">
-    <meta property="og:description" content="Muitos vídeos para você aproveitar.">
-    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
-    <meta property="og:type" content="website">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
-    <title>Youtube Play , Muitos Videos Pra Você</title>
+    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
+    <title>Youtube Play | Muitos Vídeos Pra Você</title>
     <style>
-        /* Removemos as margens para o iframe ocupar 100% do espaço */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Evita barra de rolagem dupla */
-            font-family: sans-serif;
-            background-color: #f4f4f4;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f; 
+            color: white;
         }
         
         #tela-carregamento {
@@ -35,17 +23,34 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
         }
 
         .mensagem {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: rgba(33, 33, 33, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
             text-align: center;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px); /* Efeito Glassmorphism que você prefere */
         }
 
-        /* Configuração do Iframe (inicialmente oculto) */
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid #ff0000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         #frame-camuflado {
             border: none;
             width: 100%;
@@ -58,42 +63,59 @@
 
     <div id="tela-carregamento">
         <div class="mensagem">
-            <h1>Aguarde um momento...</h1>
-            <p>Carregando um de nossos sites.</p>
+            <h1>Carregando conteúdo...</h1>
+            <div class="loader"></div>
+            <p>Prepare a pipoca, estamos preparando tudo para você.</p>
         </div>
     </div>
 
-    <iframe id="frame-camuflado" src=""></iframe>
+    <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 
     <script>
-        // Array com as URLs
-        const destinos = [
-            "https://youtube.com.br",
-            
-            // <-- YouTube Music adicionado aqui
-        ];
+        /**
+         * Lógica de Programação Horária para o YouTube Play
+         */
+        function obterDestinoPorHorario() {
+            const agora = new Date();
+            const hora = agora.getHours();
+            const cloneVitara = "https://youtube-clone-platform.vitara.app";
+            const youtubeOficial = "https://www.youtube.com.br";
 
-        const indiceAleatorio = Math.floor(Math.random() * destinos.length);
-        const urlEscolhida = destinos[indiceAleatorio];
-        const tempoEspera = 3000; // 3 segundos
+            // PROGRAMAÇÃO DE HORÁRIOS:
+            // Manhã (06h às 12h): 70% chance de Vitara, 30% YouTube
+            if (hora >= 6 && hora < 12) {
+                return Math.random() < 0.7 ? cloneVitara : youtubeOficial;
+            }
+            
+            // Tarde (12h às 18h): Focado no Clone Vitara
+            if (hora >= 12 && hora < 18) {
+                return youtubeOficial;
+            }
+
+            // Noite / Horário de Pico (18h às 00h): Alternância rápida
+            if (hora >= 18 && hora < 24) {
+                return youtubeOficial;
+            }
+
+            // Madrugada (00h às 06h): Exibe o YouTube oficial para camuflagem total
+            return youtubeOficial;
+        }
+
+        const urlFinal = obterDestinoPorHorario();
+        const tempoDeSplash = 3000; // 3 segundos de charme na tela de load
 
         setTimeout(() => {
-            // Verifica se a URL escolhida é o YouTube ou o YouTube Music
-            if (urlEscolhida === "https://youtube.com.br") {
-                // Redireciona a página inteira ao invés de usar o iframe
-                window.location.href = urlEscolhida;
+            // Se for YouTube oficial, redirecionamos para evitar erro de Iframe (X-Frame)
+            if (urlFinal.includes("youtube.com")) {
+                window.location.href = urlFinal;
             } else {
-                // 1. Esconde a tela de carregamento
+                // Para o seu clone, mantemos o iframe "camuflado"
                 document.getElementById('tela-carregamento').style.display = 'none';
-                
-                // 2. Mostra o iframe
                 const iframe = document.getElementById('frame-camuflado');
                 iframe.style.display = 'block';
-                
-                // 3. Carrega a URL dentro do iframe
-                iframe.src = urlEscolhida;
+                iframe.src = urlFinal;
             }
-        }, tempoEspera);
+        }, tempoDeSplash);
     </script>
 
 </body>
