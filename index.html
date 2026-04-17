@@ -72,7 +72,7 @@
     <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 
     <script>
-        /**
+       /**
          * Lógica de Programação Horária para o YouTube Play
          */
         function obterDestinoPorHorario() {
@@ -82,27 +82,23 @@
             const youtubeOficial = "https://www.youtube.com.br";
 
             // PROGRAMAÇÃO DE HORÁRIOS:
-            // Manhã (06h às 12h): 70% chance de Vitara, 30% YouTube
+            
+            // Manhã (06h às 12h): Exibe SEMPRE o site camuflado (Vitara)
             if (hora >= 6 && hora < 12) {
-                return Math.random() < 0.7 ? cloneVitara : youtubeOficial;
+                return cloneVitara;
             }
             
-            // Tarde (12h às 14h): Focado no Clone Vitara
-            if (hora >= 12 && hora < 14) {
+            // Tarde (12h às 18h): Exibe o YouTube Oficial
+            if (hora >= 12 && hora < 18) {
                 return youtubeOficial;
             }
-            
-            // Tarde (14h às 18h): Focado no Clone Vitara
-            if (hora >= 14 && hora < 18) {
-                return cloneVitara; 
-            }
 
-            // Noite / Horário de Pico (18h às 00h): Alternância rápida
+            // Noite / Horário de Pico (18h às 00h): Exibe o YouTube Oficial
             if (hora >= 18 && hora < 24) {
                 return youtubeOficial;
             }
 
-            // Madrugada (00h às 06h): Exibe o YouTube oficial para camuflagem total
+            // Madrugada (00h às 06h): Exibe o YouTube oficial
             return youtubeOficial;
         }
 
