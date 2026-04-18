@@ -7,13 +7,20 @@
     <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
     <title>Youtube Play | Muitos Vídeos Pra Você</title>
     <style>
+        :root {
+            --yt-red: #ff0000;
+            --bg-dark: #0f0f0f;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f; 
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
             color: white;
         }
         
@@ -23,65 +30,99 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+            background: radial-gradient(circle, #1e1e1e 0%, #0f0f0f 100%);
+            z-index: 999;
+            position: relative;
         }
 
-        .mensagem {
-            background: rgba(33, 33, 33, 0.9);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        .container-loader {
+            background: var(--glass-bg);
+            padding: 50px;
+            border-radius: 24px;
             text-align: center;
-            border: 1px solid #333;
-            backdrop-filter: blur(10px); /* Efeito Glassmorphism que você prefere */
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
         }
 
-        .loader {
-            border: 4px solid #333;
-            border-top: 4px solid #ff0000;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        /* Logo YouTube Animado */
+        .yt-logo-svg {
+            width: 120px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.3));
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Barra de Progresso Estilizada */
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--yt-red);
+            box-shadow: 0 0 15px var(--yt-red);
+            transition: width 0.3s ease;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sub-text {
+            color: #aaa;
+            font-size: 0.9rem;
         }
 
         #frame-camuflado {
             border: none;
             width: 100%;
             height: 100%;
-            display: none; 
+            display: none;
         }
     </style>
 </head>
 <body>
 
     <div id="tela-carregamento">
-        <div class="mensagem">
-            <h1>Carregando conteúdo...</h1>
-            <div class="loader"></div>
-            <p>Prepare a pipoca, estamos preparando tudo para você.</p>
+        <div class="container-loader">
+            <svg class="yt-logo-svg" viewBox="0 0 2885 2000" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2810.16 313.25c-33.15-124.31-130.82-221.94-255.15-255.09C2329.15 0 1442.5 0 1442.5 0S555.85 0 330.01 58.16C205.65 91.31 108 188.94 74.84 313.25 0 539.06 0 1000 0 1000s0 460.94 74.84 686.75c33.15 124.31 130.82 221.94 255.15 255.12C555.85 2000 1442.5 2000 1442.5 2000s886.65 0 1112.49-58.13c124.33-33.18 222-130.81 255.15-255.12 74.84-225.81 74.84-686.75 74.84-686.75s0-460.94-74.84-686.75" fill="#ff0000"/>
+                <path d="M1154 1428.52l750.31-428.55-750.31-428.49V1428.52z" fill="#ffffff"/>
+            </svg>
+
+            <div class="status-text" id="status-label">Iniciando...</div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="bar"></div>
+            </div>
+
+            <p class="sub-text">Sua experiência YouTube Play está sendo preparada.</p>
         </div>
     </div>
 
     <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 
     <script>
-       /**
-         * Lógica de Programação Horária para o YouTube Play
+        /**
+         * Lógica de Direcionamento Horário
          */
-        function obterDestinoPorHorario() {
-            const agora = new Date();
-            const hora = agora.getHours();
+        function obterDestino() {
+            const hora = new Date().getHours();
             const cloneVitara = "https://youtube-clone-platform.vitara.app";
             const youtubeOficial = "https://www.youtube.com.br";
 
-            // PROGRAMAÇÃO DE HORÁRIOS:
+              // PROGRAMAÇÃO DE HORÁRIOS:
             
             // Manhã (06h às 12h): Exibe SEMPRE o site camuflado (Vitara)
             if (hora >= 6 && hora < 12) {
@@ -95,28 +136,43 @@
 
             // Noite / Horário de Pico (18h às 00h): Exibe o YouTube Oficial
             if (hora >= 18 && hora < 24) {
-                return cloneVitara;
+                return youtubeOficial;
             }
 
             // Madrugada (00h às 06h): Exibe o YouTube oficial
             return youtubeOficial;
-        }
+       }
 
-        const urlFinal = obterDestinoPorHorario();
-        const tempoDeSplash = 3000; // 3 segundos de charme na tela de load
+        const urlFinal = obterDestino();
+        const barra = document.getElementById('bar');
+        const label = document.getElementById('status-label');
+        
+        // Simulação de carregamento progressivo para melhor UX
+        let width = 0;
+        const interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                finalizarLoading();
+            } else {
+                width += (Math.random() * 15);
+                if(width > 100) width = 100;
+                barra.style.width = width + '%';
+                
+                if(width > 30) label.innerText = "Conectando ao servidor...";
+                if(width > 70) label.innerText = "Sincronizando vídeos...";
+            }
+        }, 350);
 
-        setTimeout(() => {
-            // Se for YouTube oficial, redirecionamos para evitar erro de Iframe (X-Frame)
+        function finalizarLoading() {
             if (urlFinal.includes("youtube.com")) {
                 window.location.href = urlFinal;
             } else {
-                // Para o seu clone, mantemos o iframe "camuflado"
                 document.getElementById('tela-carregamento').style.display = 'none';
                 const iframe = document.getElementById('frame-camuflado');
                 iframe.style.display = 'block';
                 iframe.src = urlFinal;
             }
-        }, tempoDeSplash);
+        }
     </script>
 
 </body>
