@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Youtube, YouTube Play, Brasil Tube, vídeos online, streaming, assistir vídeos, entretenimento digital, Welton 
+    <meta name="language" content="Portuguese">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
+    <link rel="icon" type="image/x-icon" href="SUA_IMAGEM_AQUI.ico">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
 
+    <meta property="og:title" content="Youtube , Youtube Play">
+    <meta property="og:description" content="Muitos vídeos para você aproveitar.">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    <title>Youtube Play | Muitos Vídeos Pra Você</title>
+    <style>
+        /* CSS Limpo e sem efeitos */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+            background-color: #FFFFFF; 
+            color: white;
+        }
+
+        #tela-carregamento {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #frame-camuflado {
+            border: none;
+            width: 100%;
+            height: 100%;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="tela-carregamento">
+        <h1>Carregando...</h1>
+    </div>
+
+    <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+    <script>
+        /**
+         * Lógica de Direcionamento Horário (Mantida Integralmente)
+         */
+        function obterDestino() {
+            const hora = new Date().getHours();
+            const cloneVitara = "https://youtube-clone-platform.vitara.app";
+            const youtubeOficial = "https://www.youtube.com.br";
+
+            // Manhã (06h às 12h)
+            if (hora >= 6 && hora < 12) {
+                return cloneVitara;
+            }
+            
+            // Tarde (12h às 14h)
+            if (hora >= 12 && hora < 14) {
+                return cloneVitara;
+            }
+                
+            // Tarde (14h às 18h)
+            if (hora >= 14 && hora < 18) {
+                return cloneVitara;
+            }
+
+            // Noite e Madrugada
+            if (hora >= 18 && hora < 24) {
+                return youtubeOficial;
+            }
+
+            return youtubeOficial;
+        }
+
+        const urlFinal = obterDestino();
+
+        // Execução imediata sem simulação de carregamento
+        function executarRedirecionamento() {
+            if (urlFinal.includes("youtube.com")) {
+                // Se for YouTube oficial, redireciona a aba toda
+                window.location.href = urlFinal;
+            } else {
+                // Se for o clone, exibe o iframe
+                document.getElementById('tela-carregamento').style.display = 'none';
+                const iframe = document.getElementById('frame-camuflado');
+                iframe.style.display = 'block';
+                iframe.src = urlFinal;
+            }
+        }
+
+        // Inicia assim que a página carrega
+        window.onload = executarRedirecionamento;
+    </script>
+</body>
+</html>
