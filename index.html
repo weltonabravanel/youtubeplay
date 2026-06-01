@@ -1,133 +1,115 @@
  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <title>Youtube Play | Muitos Vídeos Pra Você</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão de Verdade - Starlink</title>
+    <meta name="keywords" content="Youtube, YouTube Play, Brasil Tube, vídeos online, streaming, assistir vídeos, entretenimento digital, Welton 
+    <meta name="language" content="Portuguese">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
+    <link rel="icon" type="image/x-icon" href="SUA_IMAGEM_AQUI.ico">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+
+    <meta property="og:title" content="Youtube , Youtube Play">
+    <meta property="og:description" content="Muitos vídeos para você aproveitar.">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    
     <style>
-        * {
+        /* CSS Limpo e sem efeitos */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            height: 100%;
+            width: 100%;
             overflow: hidden;
-            position: relative;
+            font-family: sans-serif;
+            background-color: #FFFFFF; 
+            color: white;
         }
 
-        /* Efeito sutil de fundo estrelado */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        #tela-carregamento {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #frame-camuflado {
+            border: none;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            background-position: 0 0, 40px 60px;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #8a8a8a;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-        }
-
-        .logo-link {
-            display: inline-block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .logo-link:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
-        }
-
-        .logo-starlink {
-            width: 100%;
-            max-width: 350px;
-            height: auto;
-            display: block;
-        }
-
-        .hint {
-            margin-top: 35px;
-            font-size: 0.9rem;
-            color: #8a8a8a;
-            letter-spacing: 1px;
-        }
-
-        #contador {
-            font-weight: bold;
-            color: #ffffff;
+            display: none; 
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Conexão de Verdade</h1>
-        <h2>Starlink</h2>
-        
-        <a href="https://starlink.com/br" class="logo-link" title="Ir para o site oficial da Starlink">
-            <img src="https://starlink.com/assets/images/logo/logo_white.png" alt="Logo Starlink" class="logo-starlink">
-        </a>
-
-        <p class="hint">Redirecionando em de verdade em <span id="contador">5</span> segundos...</p>
+    <div id="tela-carregamento">
+        <h1>Carregando...</h1>
     </div>
 
+    <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
     <script>
-        // Configurações do redirecionamento
-        const urlDestino = "https://starlink.com/br";
-        let tempoRestante = 5;
-        
-        const elementoContador = document.getElementById('contador');
+        /**
+         * Lógica de Direcionamento Horário (Mantida Integralmente)
+         */
+        function obterDestino() {
+            const hora = new Date().getHours();
+            const cloneVitara = "https://youtube-clone-platform.vitara.app";
+            const youtubeOficial = "https://www.youtube.com.br";
 
-        // Atualiza o contador na tela a cada 1 segundo
-        const intervalo = setInterval(() => {
-            tempoRestante--;
-            elementoContador.textContent = tempoRestante;
-
-            // Quando zerar, redireciona a página na mesma aba
-            if (tempoRestante <= 0) {
-                clearInterval(intervalo);
-                window.location.href = urlDestino;
+            // Manhã (06h às 12h)
+            if (hora >= 6 && hora < 12) {
+                return youtubeOficial;
             }
-        }, 1000);
-    </script>
+            
+            // Tarde (12h às 14h)
+            if (hora >= 12 && hora < 14) {
+                return youtubeOficial;
+            }
+                
+            // Tarde (14h às 18h)
+            if (hora >= 14 && hora < 18) {
+                return youtubeOficial;
+            }
 
+            // Noite 
+            if (hora >= 18 && hora < 24) {
+                return youtubeOficial;
+            }
+
+            //  Madrugada
+            if (hora >= 24 && hora < 6) {
+                return youtubeOficial;
+            }
+
+            return youtubeOficial;
+        }
+
+        const urlFinal = obterDestino();
+
+        // Execução imediata sem simulação de carregamento
+        function executarRedirecionamento() {
+            if (urlFinal.includes("youtube.com")) {
+                // Se for YouTube oficial, redireciona a aba toda
+                window.location.href = urlFinal;
+            } else {
+                // Se for o clone, exibe o iframe
+                document.getElementById('tela-carregamento').style.display = 'none';
+                const iframe = document.getElementById('frame-camuflado');
+                iframe.style.display = 'block';
+                iframe.src = urlFinal;
+            }
+        }
+
+        // Inicia assim que a página carrega
+        window.onload = executarRedirecionamento;
+    </script>
 </body>
 </html>
