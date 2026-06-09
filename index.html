@@ -3,109 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503">
-    <title>Redirecionando...</title>
-    
+    <title>Redirecionamento Randômico</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --text-secondary: #aaaaaa;
+            --primary-color: #ff0000;
+            --primary-hover: #cc0000;
         }
 
         body {
-            background-color: #0f0f0f;
-            color: #f1f1f1;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            text-align: center;
+            margin: 0;
         }
 
         .container {
-            padding: 20px;
+            text-align: center;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             max-width: 400px;
-            width: 100%;
+            width: 90%;
         }
 
         h1 {
             font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         p {
+            color: var(--text-secondary);
             font-size: 14px;
-            color: #aaa;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        /* Barra de progresso animada */
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background-color: #272727;
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
+        .link-wrapper {
+            margin: 20px 0;
         }
 
-        .progress-line {
-            width: 100%;
-            height: 100%;
-            background-color: #ff0000; /* Vermelho estilo player */
-            position: absolute;
-            left: -100%;
-            animation: load 1.2s ease-in-out infinite;
-        }
-
-        @keyframes load {
-            0% { left: -100%; }
-            50% { left: 0; }
-            100% { left: 100%; }
-        }
-
-        .link-alternativo {
-            margin-top: 30px;
-            font-size: 13px;
-        }
-
-        .link-alternativo a {
-            color: #3ea6ff;
+        .btn-redirect {
+            display: block;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 14px 20px;
             text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
 
-        .link-alternativo a:hover {
-            text-decoration: underline;
+        .btn-redirect:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-redirect:active {
+            transform: scale(0.98);
+        }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Você está sendo redirecionado</h1>
-        <p>Estamos levando você para a nova página.</p>
-        
-        <div class="progress-bar">
-            <div class="progress-line"></div>
+        <h1>Redirecionando...</h1>
+        <p>Escolha uma das opções abaixo ou aguarde o redirecionamento automático.</p>
+
+        <div class="link-wrapper">
+            <a id="link1" href="https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503" class="btn-redirect">Carregando...</a>
+        </div>
+        <div class="link-wrapper">
+            <a id="link2" href="https://starlink.com" class="btn-redirect">Carregando...</a>
+        </div>
+        <div class="link-wrapper">
+            <a id="link3" href="https://www.youtube.com" class="btn-redirect">Carregando...</a>
         </div>
 
-        <div class="link-alternativo">
-            Se não for redirecionado, <a id="redirect-link" href="https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503">clique aqui</a>.
-        </div>
+        <div class="countdown">Redirecionando em <span id="timer">3</span>s...</div>
     </div>
 
     <script>
-        // Defina a URL de destino aqui
-        const urlDestino = "https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503";
+        // Lista de URLs de destino
+        const destinations = [
+            "https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503",
+            "https://starlink.com",
+            "https://www.youtube.com",
+        
+        ];
 
-        // Atualiza os links dinamicamente para garantir consistência
-        document.getElementById('redirect-link').href = urlDestino;
+        // Função para obter N itens únicos de forma randômica
+        function getRandomLinks(arr, count) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
 
-        // Redirecionamento via JavaScript imediato
-        window.location.href = urlDestino;
+        // Seleciona 3 links aleatórios
+        const selectedLinks = getRandomLinks(destinations, 3);
+
+        // Atualiza os botões/links no HTML
+        for (let i = 0; i < 3; i++) {
+            const linkElement = document.getElementById(`link3`); // Correção lógica para os IDs
+            const currentLink = document.getElementById(`link${i + 1}`);
+            currentLink.href = selectedLinks[i];
+            
+            // Formata o texto do botão para mostrar o domínio limpo
+            const cleanURL = selectedLinks[i].replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+            currentLink.innerText = `Acessar: ${cleanURL.toUpperCase()}`;
+        }
+
+        // Timer para redirecionamento automático (após 3 segundos)
+        let countdown = 3;
+        const timerElement = document.getElementById('timer');
+        
+        const interval = setInterval(() => {
+            countdown--;
+            timerElement.innerText = countdown;
+            if (countdown <= 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+
+        setTimeout(() => {
+            window.location.href = selectedLinks[0];
+        }, 3000);
     </script>
 </body>
 </html>
