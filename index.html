@@ -1,146 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta name="google-site-verification" content="IvB_TOWEZU_brxiQa07_yIjrPiYaU88WdcaZ9Fo1h9E" />
+
+    <title>Youtube Play | Muitos Vídeos Pra Você</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionamento Randômico</title>
+    <meta name="keywords" content="Youtube, YouTube Play, Brasil Tube, vídeos online, streaming, assistir vídeos, entretenimento digital, Welton">
+    <meta name="language" content="Portuguese">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
+    <link rel="icon" type="image/x-icon" href="SUA_IMAGEM_AQUI.ico">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+
+    <meta property="og:title" content="Youtube , Youtube Play">
+    <meta property="og:description" content="Muitos vídeos para você aproveitar.">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
+    
     <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #ffffff;
-            --text-secondary: #aaaaaa;
-            --primary-color: #ff0000;
-            --primary-hover: #cc0000;
+        /* CSS Limpo e sem efeitos */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+            background-color: #FFFFFF; 
+            color: white;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        #tela-carregamento {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
         }
 
-        .container {
-            text-align: center;
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 90%;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .link-wrapper {
-            margin: 20px 0;
-        }
-
-        .btn-redirect {
-            display: block;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: 14px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-
-        .btn-redirect:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-redirect:active {
-            transform: scale(0.98);
-        }
-
-        .countdown {
-            margin-top: 20px;
-            font-size: 13px;
-            color: var(--text-secondary);
+        #frame-camuflado {
+            border: none;
+            width: 100%;
+            height: 100%;
+            display: none; 
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Redirecionando...</h1>
-        <p>Escolha uma das opções abaixo ou aguarde o redirecionamento automático.</p>
-
-        <div class="link-wrapper">
-            <a id="link1" href="https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503" class="btn-redirect">Carregando...</a>
-        </div>
-        <div class="link-wrapper">
-            <a id="link2" href="https://starlink.com" class="btn-redirect">Carregando...</a>
-        </div>
-        <div class="link-wrapper">
-            <a id="link3" href="https://www.youtube.com" class="btn-redirect">Carregando...</a>
-        </div>
-
-        <div class="countdown">Redirecionando em <span id="timer">3</span>s...</div>
+    <div id="tela-carregamento">
+        <h1>Carregando...</h1>
     </div>
 
+    <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
     <script>
-        // Lista de URLs de destino
-        const destinations = [
-            "https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503",
-            "https://starlink.com",
-            "https://www.youtube.com",
-        
-        ];
+        /**
+         * Lógica de Direcionamento Horário (Mantida Integralmente)
+         */
+        function obterDestino() {
+            const hora = new Date().getHours();
+            const cloneVitara = "https://youtube-clone-platform.vitara.app";
+            const youtubeOficial = "https://www.youtube.com.br";
 
-        // Função para obter N itens únicos de forma randômica
-        function getRandomLinks(arr, count) {
-            const shuffled = [...arr].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        // Seleciona 3 links aleatórios
-        const selectedLinks = getRandomLinks(destinations, 3);
-
-        // Atualiza os botões/links no HTML
-        for (let i = 0; i < 3; i++) {
-            const linkElement = document.getElementById(`link3`); // Correção lógica para os IDs
-            const currentLink = document.getElementById(`link${i + 1}`);
-            currentLink.href = selectedLinks[i];
-            
-            // Formata o texto do botão para mostrar o domínio limpo
-            const cleanURL = selectedLinks[i].replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
-            currentLink.innerText = `Acessar: ${cleanURL.toUpperCase()}`;
-        }
-
-        // Timer para redirecionamento automático (após 3 segundos)
-        let countdown = 3;
-        const timerElement = document.getElementById('timer');
-        
-        const interval = setInterval(() => {
-            countdown--;
-            timerElement.innerText = countdown;
-            if (countdown <= 0) {
-                clearInterval(interval);
+            // Manhã (06h às 12h)
+            if (hora >= 6 && hora < 12) {
+                return youtubeOficial;
             }
-        }, 1000);
+            
+            // Tarde (12h às 14h)
+            if (hora >= 12 && hora < 14) {
+                return youtubeOficial;
+            }
+                
+            // Tarde (14h às 18h)
+            if (hora >= 14 && hora < 18) {
+                return youtubeOficial;
+            }
 
-        setTimeout(() => {
-            window.location.href = selectedLinks[0];
-        }, 3000);
+            // Noite 
+            if (hora >= 18 && hora < 24) {
+                return youtubeOficial;
+            }
+
+            //  Madrugada
+            if (hora >= 24 && hora < 6) {
+                return youtubeOficial;
+            }
+
+            return youtubeOficial;
+        }
+
+        const urlFinal = obterDestino();
+
+        // Execução imediata sem simulação de carregamento
+        function executarRedirecionamento() {
+            if (urlFinal.includes("youtube.com")) {
+                // Se for YouTube oficial, redireciona a aba toda
+                window.location.href = urlFinal;
+            } else {
+                // Se for o clone, exibe o iframe
+                document.getElementById('tela-carregamento').style.display = 'none';
+                const iframe = document.getElementById('frame-camuflado');
+                iframe.style.display = 'block';
+                iframe.src = urlFinal;
+            }
+        }
+
+        // Inicia assim que a página carrega
+        window.onload = executarRedirecionamento;
     </script>
 </body>
 </html>
+
+   
