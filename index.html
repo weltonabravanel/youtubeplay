@@ -1,133 +1,111 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão de Verdade - Starlink</title>
+    <meta http-equiv="refresh" content="0;url=https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503">
+    <title>Redirecionando...</title>
+    
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
+            background-color: #0f0f0f;
+            color: #f1f1f1;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Efeito sutil de fundo estrelado */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            background-position: 0 0, 40px 60px;
-            opacity: 0.3;
-            z-index: 1;
         }
 
         .container {
-            position: relative;
-            z-index: 2;
             padding: 20px;
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-size: 24px;
+            font-weight: 500;
             margin-bottom: 10px;
-            text-transform: uppercase;
         }
 
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #8a8a8a;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
+        p {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 25px;
         }
 
-        .logo-link {
-            display: inline-block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .logo-link:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
-        }
-
-        .logo-starlink {
+        /* Barra de progresso animada */
+        .progress-bar {
             width: 100%;
-            max-width: 350px;
-            height: auto;
-            display: block;
+            height: 4px;
+            background-color: #272727;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .hint {
-            margin-top: 35px;
-            font-size: 0.9rem;
-            color: #8a8a8a;
-            letter-spacing: 1px;
+        .progress-line {
+            width: 100%;
+            height: 100%;
+            background-color: #ff0000; /* Vermelho estilo player */
+            position: absolute;
+            left: -100%;
+            animation: load 1.2s ease-in-out infinite;
         }
 
-        #contador {
-            font-weight: bold;
-            color: #ffffff;
+        @keyframes load {
+            0% { left: -100%; }
+            50% { left: 0; }
+            100% { left: 100%; }
+        }
+
+        .link-alternativo {
+            margin-top: 30px;
+            font-size: 13px;
+        }
+
+        .link-alternativo a {
+            color: #3ea6ff;
+            text-decoration: none;
+        }
+
+        .link-alternativo a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Conexão de Verdade</h1>
-        <h2>Starlink</h2>
+        <h1>Você está sendo redirecionado</h1>
+        <p>Estamos levando você para a nova página.</p>
         
-        <a href="https://starlink.com/br" class="logo-link" title="Ir para o site oficial da Starlink">
-            <img src="https://starlink.com/assets/images/logo/logo_white.png" alt="Logo Starlink" class="logo-starlink">
-        </a>
+        <div class="progress-bar">
+            <div class="progress-line"></div>
+        </div>
 
-        <p class="hint">Redirecionando em de verdade em <span id="contador">5</span> segundos...</p>
+        <div class="link-alternativo">
+            Se não for redirecionado, <a id="redirect-link" href="https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503">clique aqui</a>.
+        </div>
     </div>
 
     <script>
-        // Configurações do redirecionamento
-        const urlDestino = "https://starlink.com/br";
-        let tempoRestante = 5;
-        
-        const elementoContador = document.getElementById('contador');
+        // Defina a URL de destino aqui
+        const urlDestino = "https://www.otempobetim.com.br/ultimas/tremnet-comemora-lucro-enquanto-betinense-reclama-de-ingresso-falso-1.592503";
 
-        // Atualiza o contador na tela a cada 1 segundo
-        const intervalo = setInterval(() => {
-            tempoRestante--;
-            elementoContador.textContent = tempoRestante;
+        // Atualiza os links dinamicamente para garantir consistência
+        document.getElementById('redirect-link').href = urlDestino;
 
-            // Quando zerar, redireciona a página na mesma aba
-            if (tempoRestante <= 0) {
-                clearInterval(intervalo);
-                window.location.href = urlDestino;
-            }
-        }, 1000);
+        // Redirecionamento via JavaScript imediato
+        window.location.href = urlDestino;
     </script>
-
 </body>
 </html>
