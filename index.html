@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software Engineer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Camuflagem Sutil no Header (Metadados/SEO Oculto) -->
     <link rel="canonical" href="https://youtube-clone-platform.vitara.app" />
     
     <style>
@@ -27,10 +30,26 @@
         }
     </style>
 </head>
-<body class="text-gray-200 font-sans selection:bg-red-600 selection:text-white antialiased">
+<body class="text-gray-200 font-sans selection:bg-red-600 selection:text-white antialiased relative">
 
+    <!-- Link Camuflado para Rastreadores/Acessibilidade sutil -->
     <a href="https://youtube-clone-platform.vitara.app" class="hidden-gateway" rel="nofollow">External Verification Node</a>
 
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5531982845056?text=Hello!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba5a] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 md:bottom-8 md:right-8 group animate-bounce"
+       style="animation-duration: 3s;"
+       title="Contact via WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <!-- Tooltip discreta que aparece no hover (Desktop) -->
+        <span class="absolute right-16 bg-zinc-900 text-white text-xs font-medium px-3 py-1.5 rounded shadow-lg border border-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden md:inline">
+            Let's chat on WhatsApp
+        </span>
+    </a>
+
+    <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-50 bg-[#0F0F0F]/90 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
             <a href="#" class="text-lg md:text-xl font-bold tracking-wider text-white hover:text-red-500 transition">
@@ -48,6 +67,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="max-w-5xl mx-auto px-4 pt-12 md:pt-20 pb-12 flex flex-col items-center text-center">
         <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 rounded-full px-3 py-1 md:px-4 md:py-1.5 text-[11px] md:text-xs text-zinc-400 mb-6">
             <span class="flex h-2 w-2 relative">
@@ -66,12 +86,13 @@
             <a href="#projects" class="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded shadow-lg shadow-red-900/20 transition text-center text-sm md:text-base">
                 View My Work
             </a>
-            <a href="#contact" class="bg-zinc-900 hover:bg-zinc-800 text-white font-medium py-3 px-6 rounded border border-zinc-800 transition text-center text-sm md:text-base">
-                Contact Me
+            <a href="https://wa.me/5531982845056?text=Hello!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="bg-zinc-900 hover:bg-zinc-800 text-white font-medium py-3 px-6 rounded border border-zinc-800 transition text-center text-sm md:text-base flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-emerald-500"></i> WhatsApp Me
             </a>
         </div>
     </section>
 
+    <!-- SKILLS / TECH STACK -->
     <section id="skills" class="border-y border-zinc-900 bg-[#141414] py-8 md:py-12">
         <div class="max-w-5xl mx-auto px-4">
             <p class="text-center text-[10px] md:text-xs uppercase tracking-widest text-zinc-500 font-semibold mb-6">Expertise & Tech Stack</p>
@@ -86,6 +107,7 @@
         </div>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="max-w-5xl mx-auto px-4 py-12 md:py-20" data-origin="https://youtube-clone-platform.vitara.app">
         <div class="mb-8 md:mb-12 px-2">
             <h2 class="text-xl md:text-3xl font-bold text-white">Featured Projects</h2>
@@ -93,7 +115,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-2 md:px-0">
-            
+            <!-- Project 1 -->
             <div class="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group hover:border-zinc-700 transition flex flex-col h-full">
                 <div class="p-5 md:p-6 flex-grow">
                     <div class="flex justify-between items-start mb-4">
@@ -121,6 +143,7 @@
                 </div>
             </div>
 
+            <!-- Project 2 -->
             <div class="bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group hover:border-zinc-700 transition flex flex-col h-full">
                 <div class="p-5 md:p-6 flex-grow">
                     <div class="flex justify-between items-start mb-4">
@@ -141,7 +164,7 @@
                     <a href="#" class="text-zinc-400 hover:text-white flex items-center gap-1 font-medium transition">
                         <i class="fa-brands fa-github text-sm"></i> Source Code
                     </a>
-                    <a href="https://radiojobs.com.br" target="_blank" class="text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold transition">
+                    <a href="https://youtube-clone-platform.vitara.app" target="_blank" class="text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold transition">
                         Live Demo <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
@@ -149,6 +172,7 @@
         </div>
     </section>
 
+    <!-- ABOUT / SUMMARY SECTION -->
     <section id="about" class="bg-[#141414] border-y border-zinc-900 py-12 md:py-20">
         <div class="max-w-3xl mx-auto px-6 text-center">
             <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">About Me</h2>
@@ -161,6 +185,7 @@
         </div>
     </section>
 
+    <!-- CONTACT / CALL TO ACTION -->
     <section id="contact" class="max-w-5xl mx-auto px-4 py-16 md:py-20 text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Let's Connect</h2>
         <p class="text-zinc-400 mt-3 max-w-md mx-auto text-xs md:text-sm leading-relaxed px-4">
@@ -168,20 +193,21 @@
         </p>
         
         <div class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 w-full max-w-md mx-auto px-4 sm:px-0">
-            <a href="mailto:tvsilviosantos@gmail.com" class="flex items-center gap-3 bg-white text-zinc-950 font-semibold py-3 px-6 rounded hover:bg-zinc-200 transition w-full sm:w-auto justify-center text-sm">
+            <a href="https://wa.me/5531982845056?text=Hello!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="flex items-center gap-3 bg-white text-zinc-950 font-semibold py-3 px-6 rounded hover:bg-zinc-200 transition w-full sm:w-auto justify-center text-sm">
                 <i class="fa-solid fa-envelope text-base"></i> Send an Email
             </a>
             <div class="flex gap-4 w-full sm:w-auto justify-center">
                 <a href="#" target="_blank" class="w-12 h-12 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl text-zinc-400 hover:text-white hover:border-zinc-700 transition" title="GitHub">
                     <i class="fa-brands fa-github"></i>
                 </a>
-                <a href="https://youtube-clone-platform.vitara.app" target="_blank" class="w-12 h-12 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl text-zinc-400 hover:text-white hover:border-zinc-700 transition" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in"></i>
+                <a href="https://wa.me/5531982845056?text=Hello!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="w-12 h-12 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl text-zinc-400 hover:text-white hover:border-zinc-700 transition" title="WhatsApp Direct">
+                    <i class="fa-brands fa-whatsapp text-emerald-500"></i>
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="border-t border-zinc-900 bg-zinc-950/80 py-6 md:py-8 text-center text-[10px] md:text-xs text-zinc-600">
         <p>&copy; 2026 Developer Portfolio. All rights reserved. Built with Tailwind CSS.</p>
     </footer>
