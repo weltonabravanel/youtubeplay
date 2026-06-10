@@ -1,119 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta name="google-site-verification" content="IvB_TOWEZU_brxiQa07_yIjrPiYaU88WdcaZ9Fo1h9E" />
-
-    <title>Youtube Play | Muitos Vídeos Pra Você</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Youtube, YouTube Play, Brasil Tube, vídeos online, streaming, assistir vídeos, entretenimento digital, Welton">
-    <meta name="language" content="Portuguese">
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Assista aos melhores vídeos, músicas e conteúdos exclusivos no YouTube Play."> 
-    <link rel="icon" type="image/x-icon" href="SUA_IMAGEM_AQUI.ico">
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-
-    <meta property="og:title" content="Youtube , Youtube Play">
-    <meta property="og:description" content="Muitos vídeos para você aproveitar.">
-    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
-    <meta property="og:type" content="website">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://miro.medium.com/v2/resize:fit:1400/1*qmj2NWAOJo1dsTQ5riciOA.jpeg">
-    
+    <title>Bandeira dos EUA Tremulando</title>
     <style>
-        /* CSS Limpo e sem efeitos */
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            font-family: sans-serif;
-            background-color: #FFFFFF; 
-            color: white;
+            box-sizing: border-box;
         }
 
-        #tela-carregamento {
+        body {
+            background-color: #1a1a1a;
             display: flex;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
         }
 
-        #frame-camuflado {
-            border: none;
+        /* Container da bandeira para dar estabilidade e perspectiva */
+        .flag-container {
+            perspective: 1000px;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+        }
+
+        /* Estrutura principal da bandeira */
+        .usa-flag {
+            position: relative;
+            width: 380px;
+            height: 200px;
+            background: linear-gradient(#b22234 50%, #ffffff 50%);
+            background-size: 100% 30.76px; /* Altura exata das 13 listras */
+            transform-style: preserve-3d;
+            animation: wave 4s ease-in-out infinite alternate;
+        }
+
+        /* O retângulo azul (Canton) */
+        .canton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 152px; /* 40% da largura */
+            height: 107.6px; /* Altura de 7 listras */
+            background-color: #3c3b6e;
+            padding: 6px 4px;
+            display: grid;
+            grid-template-rows: repeat(9, 1fr);
+            gap: 2px;
+        }
+
+        /* Linhas de estrelas (simplificadas para o efeito visual) */
+        .star-row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .star-row.short {
+            padding: 0 8px;
+        }
+
+        /* Criando as estrelas usando CSS puro */
+        .star {
+            position: relative;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-right: 5px solid transparent;
+            border-bottom: 3.5px solid #ffffff;
+            border-left: 5px solid transparent;
+            transform: rotate(35deg);
+        }
+
+        .star::before {
+            content: '';
+            position: absolute;
+            top: -2.5px;
+            left: -3.2px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-right: 1.5px solid transparent;
+            border-bottom: 4px solid #ffffff;
+            border-left: 1.5px solid transparent;
+            transform: rotate(-35deg);
+        }
+
+        .star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -5px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-right: 5px solid transparent;
+            border-bottom: 3.5px solid #ffffff;
+            border-left: 5px solid transparent;
+            transform: rotate(-70deg);
+        }
+
+        /* Camada de sombra que simula as dobras do tecido tremendo */
+        .flag-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            display: none; 
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.15) 25%,
+                rgba(0, 0, 0, 0.25) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                rgba(0, 0, 0, 0.3) 100%
+            );
+            background-size: 200% 100%;
+            animation: wind-shadow 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        /* Mastro da bandeira */
+        .flagpole {
+            position: absolute;
+            left: -15px;
+            top: -20px;
+            width: 15px;
+            height: 450px;
+            background: linear-gradient(90deg, #555, #888, #333);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .flagpole-knob {
+            position: absolute;
+            top: -32px;
+            left: -18px;
+            width: 21px;
+            height: 21px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
+            border-radius: 50%;
+        }
+
+        /* ANIMAÇÕES */
+        
+        /* Movimento 3D da bandeira */
+        @keyframes wave {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg) skewY(0deg);
+            }
+            50% {
+                transform: rotateY(15deg) rotateX(5deg) skewY(-2deg) scaleX(0.98);
+            }
+            100% {
+                transform: rotateY(-10deg) rotateX(-5deg) skewY(3deg);
+            }
+        }
+
+        /* Movimento das sombras para simular ondulação */
+        @keyframes wind-shadow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="tela-carregamento">
-        <h1>Carregando...</h1>
+    <div style="position: relative;">
+        <div class="flagpole-knob"></div>
+        <div class="flagpole"></div>
+
+        <div class="flag-container">
+            <div class="usa-flag">
+                <div class="canton">
+                    <div class="star-row"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row short"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row short"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row short"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row short"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                    <div class="star-row"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+                </div>
+                <div class="flag-overlay"></div>
+            </div>
+        </div>
     </div>
 
-    <iframe id="frame-camuflado" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-
-    <script>
-        /**
-         * Lógica de Direcionamento Horário (Mantida Integralmente)
-         */
-        function obterDestino() {
-            const hora = new Date().getHours();
-            const cloneVitara = "https://youtube-clone-platform.vitara.app";
-            const youtubeOficial = "https://www.youtube.com.br";
-
-            // Manhã (06h às 12h)
-            if (hora >= 6 && hora < 12) {
-                return youtubeOficial;
-            }
-            
-            // Tarde (12h às 14h)
-            if (hora >= 12 && hora < 14) {
-                return youtubeOficial;
-            }
-                
-            // Tarde (14h às 18h)
-            if (hora >= 14 && hora < 18) {
-                return youtubeOficial;
-            }
-
-            // Noite 
-            if (hora >= 18 && hora < 24) {
-                return youtubeOficial;
-            }
-
-            //  Madrugada
-            if (hora >= 24 && hora < 6) {
-                return youtubeOficial;
-            }
-
-            return youtubeOficial;
-        }
-
-        const urlFinal = obterDestino();
-
-        // Execução imediata sem simulação de carregamento
-        function executarRedirecionamento() {
-            if (urlFinal.includes("youtube.com")) {
-                // Se for YouTube oficial, redireciona a aba toda
-                window.location.href = urlFinal;
-            } else {
-                // Se for o clone, exibe o iframe
-                document.getElementById('tela-carregamento').style.display = 'none';
-                const iframe = document.getElementById('frame-camuflado');
-                iframe.style.display = 'block';
-                iframe.src = urlFinal;
-            }
-        }
-
-        // Inicia assim que a página carrega
-        window.onload = executarRedirecionamento;
-    </script>
 </body>
 </html>
-
-   
