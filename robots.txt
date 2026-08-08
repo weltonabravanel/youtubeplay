@@ -1,0 +1,39 @@
+# ===================================================
+# Directivas para o Google Search Console & Google Search
+# Dominio: https://youtubeplay.com.br
+# ===================================================
+
+# Regras gerais para todos os motores de busca e bots do Google
+User-agent: *
+Allow: /
+
+# Bloqueio de pastas de sistema, scripts de backend e rotas privadas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login/
+Disallow: /register/
+Disallow: /dashboard/
+Disallow: /private/
+Disallow: /account/
+
+# Bloqueio de parametros de busca interna para evitar conteudo duplicado no indice
+Disallow: /*?s=*
+Disallow: /*?search=*
+Disallow: /*?query=*
+
+# Garantia explicita de acesso aos recursos estaticos para renderizacao visual
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Regra especifica para o Googlebot (Garantir acesso completo de rastreamento)
+User-agent: Googlebot
+Allow: /
+
+# Indicacao do Mapa do Site para o Google Search Console
+Sitemap: https://youtubeplay.com.br/sitemap.xml
